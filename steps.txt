@@ -1,0 +1,8 @@
+### Steps to create simple APIs ###
+1. Create interface.ts file inside interfaces folder
+2. Create dto.ts file inside dtos folder
+3. Create model.ts file inside models folder
+4. Create service.ts file inside services folder
+5. Create controller.ts file inside controllers folder
+6. Create route.js file inside routes folder
+7. Import route class inside server.ts
