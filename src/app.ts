@@ -11,7 +11,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import { dbConnection } from '@database';
-import { Routes } from '@interfaces/routes.interface';
+import { IRoutes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import bodyParser from 'body-parser';
@@ -21,12 +21,12 @@ export class App {
   public env: string;
   public port: string | number;
 
-  constructor(routes: Routes[]) {
+  constructor(routes: IRoutes[]) {
     this.app = express();
     this.env = NODE_ENV || 'development';
     this.port = PORT || 3000;
 
-    this.connectToDatabase();
+    this.connectToDatabase().then(() => console.log(`Database connected`));
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     // this.initializeSwagger();
@@ -52,7 +52,7 @@ export class App {
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    await connect(dbConnection.url, dbConnection.options);
+    connect(dbConnection.url, dbConnection.options);
   }
 
   private initializeMiddlewares() {
@@ -66,7 +66,7 @@ export class App {
     this.app.use(cookieParser());
   }
 
-  private initializeRoutes(routes: Routes[]) {
+  private initializeRoutes(routes: IRoutes[]) {
     routes.forEach(route => {
       this.app.use('/api/', route.router);
     });

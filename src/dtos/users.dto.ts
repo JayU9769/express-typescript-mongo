@@ -6,9 +6,13 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(9)
-  @MaxLength(32)
+  @MinLength(8)
+  @MaxLength(12)
   public password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  public role: string;
 }
 
 export class UpdateUserDto {

@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, MinLength, MaxLength, IsEmail, IsNumber, IsEnum, IsOptional, IsArray, ArrayMinSize } from 'class-validator';
 import { Match } from '@dtos/decorators/match.decorator';
+import {Transform} from "class-transformer";
 
 export class CreateAdminDto {
   @IsString()

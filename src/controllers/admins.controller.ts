@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Container } from 'typedi';
-import { Admin } from '@interfaces/admins.interface';
+import { IAdmin } from '@interfaces/admins.interface';
 import { AdminService } from '@services/admins.service';
 
 export class AdminController {
@@ -8,7 +8,7 @@ export class AdminController {
 
   public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const findAllData: Admin[] = await this.admin.findAll();
+      const findAllData: IAdmin[] = await this.admin.findAll();
 
       res.status(200).json({ data: findAllData, message: 'findAll' });
     } catch (error) {
@@ -19,7 +19,7 @@ export class AdminController {
   public getById = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const adminId: string = req.params.id;
-      const findOneData: Admin = await this.admin.findById(adminId);
+      const findOneData: IAdmin = await this.admin.findById(adminId);
 
       res.status(200).json({ data: findOneData, message: 'findOne' });
     } catch (error) {
@@ -29,8 +29,8 @@ export class AdminController {
 
   public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const adminData: Admin = req.body;
-      const createData: Admin = await this.admin.create(adminData);
+      const adminData: IAdmin = req.body;
+      const createData: IAdmin = await this.admin.create(adminData);
 
       res.status(201).json({ data: createData, message: 'created' });
     } catch (error) {
@@ -41,8 +41,8 @@ export class AdminController {
   public update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const adminId: string = req.params.id;
-      const adminData: Admin = req.body;
-      const updateAdminData: Admin = await this.admin.update(adminId, adminData);
+      const adminData: IAdmin = req.body;
+      const updateAdminData: IAdmin = await this.admin.update(adminId, adminData);
 
       res.status(200).json({ data: updateAdminData, message: 'updated' });
     } catch (error) {
@@ -53,7 +53,7 @@ export class AdminController {
   public delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const adminId: string = req.params.id;
-      const deleteAdminData: Admin = await this.admin.delete(adminId);
+      const deleteAdminData: IAdmin = await this.admin.delete(adminId);
 
       res.status(200).json({ data: deleteAdminData, message: 'deleted' });
     } catch (error) {

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { AdminController } from '@controllers/admins.controller';
 import { CreateAdminDto, UpdateAdminDto } from '@dtos/admins.dto';
-import { Routes } from '@interfaces/routes.interface';
+import { IRoutes } from '@interfaces/routes.interface';
 import { ValidationMiddleware } from '@middlewares/validation.middleware';
 
-export class AdminRoute implements Routes {
+export class AdminRoute implements IRoutes {
   public path = '/admins';
   public router = Router();
   public admin = new AdminController();

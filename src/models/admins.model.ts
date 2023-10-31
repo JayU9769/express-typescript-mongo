@@ -1,5 +1,5 @@
 import { model, Schema, Document } from 'mongoose';
-import { Admin } from '@interfaces/admins.interface';
+import { IAdmin } from '@interfaces/admins.interface';
 
 const AdminSchema: Schema = new Schema({
   name: {
@@ -32,6 +32,6 @@ const AdminSchema: Schema = new Schema({
       name: String,
     },
   ],
-});
+}, { timestamps: true });
 
-export const AdminModel = model<Admin & Document>('Admin', AdminSchema);
+export const AdminModel = model<IAdmin & Document>('Admin', AdminSchema);

@@ -1,6 +1,6 @@
-import { Role } from '@interfaces/roles.interface';
+import { IRole } from '@interfaces/roles.interface';
 
-export interface Admin {
+export interface IAdmin {
   _id?: string;
   name: string;
   username: string;
@@ -8,5 +8,5 @@ export interface Admin {
   password: string;
   phone_no: string;
   status: number;
-  roles: Array<Role>;
+  roles: Array<IRole> | Array<string>;
 }
